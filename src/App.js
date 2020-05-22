@@ -1,24 +1,27 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 
-import ChHeader from './components/ChHeader'
+import ChHeader from "./components/ChHeader";
 
 import DataEntryPage from "./pages/DataEntryPage";
+import JobQueueViewerPage from "./pages/JobQueueViewerPage";
 
-function App() {
+function App(props) {
   return (
     <ThemeProvider>
       <CSSReset />
-      <ChHeader/>
+      <ChHeader />
       <Route
         exact
         path="/dataentry"
         render={routerProps => {
           return (
-            <DataEntryPage
-              {...routerProps}
-            />
+            <React.Fragment>
+              <DataEntryPage {...routerProps} />
+              <JobQueueViewerPage search={props.search} />
+            </React.Fragment>
           );
         }}
       />
@@ -26,4 +29,6 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({ search: state.search });
+
+export default connect(mapStateToProps, null)(App);

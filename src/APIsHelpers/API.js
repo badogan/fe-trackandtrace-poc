@@ -63,6 +63,11 @@ const initiateSearchRequest = (url, searchObj) => {
   return postSimple(url, searchObj);
 };
 
+const bringJobQueue = (url, jobQueueObj) => {
+  return postSimple(url, jobQueueObj);
+};
+
 export default {
-  initiateSearchRequest
+  initiateSearchRequest,
+  bringJobQueue
 };

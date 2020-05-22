@@ -32,44 +32,43 @@ const DataEntryPage = props => {
 
   return (
     <React.Fragment>
-    <Flex align="center">
-      <FormControl>
-        <FormLabel htmlFor="uniqueId">Unique Id:</FormLabel>
-        <Stack spacing={0.5}>
-          <Input
-            onChange={e => setUniqueId(e.target.value)}
-            type="uniqueId"
-            id="uniqueId"
-            aria-describedby="uniqueId-helper-text"
-            placeholder="MAC, id, _id"
-          />
-          <FormLabel htmlFor="timestamp">Timestamp:</FormLabel>
-          <Input
-            onChange={e => setTimestamp(e.target.value)}
-            type="timestamp"
-            id="timestamp"
-            aria-describedby="timestamp-helper-text"
-            placeholder="ISO format"
-          />
-          <FormLabel htmlFor="maxDistance">Max Distance:</FormLabel>
-          <Input
-            onChange={e => setMaxDistance(e.target.value)}
-            type="maxDistance"
-            id="maxDistance"
-            aria-describedby="maxDistance-helper-text"
-            placeholder="in meters"
-          />
-        </Stack>
-        <Button
-          onClick={() => handleOnSubmit()}
-          variantColor="teal"
-          variant="outline"
-        >
-          Find
-        </Button>
-      </FormControl>
-    </Flex>
-    {props.search.length === 0 ? null : <Heading>{props.search[0].refId}</Heading>}
+      <Flex align="center">
+        <FormControl>
+          <FormLabel htmlFor="uniqueId">Unique Id:</FormLabel>
+          <Stack spacing={0.5}>
+            <Input
+              onChange={e => setUniqueId(e.target.value)}
+              type="uniqueId"
+              id="uniqueId"
+              aria-describedby="uniqueId-helper-text"
+              placeholder="MAC, id, _id"
+            />
+            <FormLabel htmlFor="timestamp">Timestamp:</FormLabel>
+            <Input
+              onChange={e => setTimestamp(e.target.value)}
+              type="timestamp"
+              id="timestamp"
+              aria-describedby="timestamp-helper-text"
+              placeholder="ISO format"
+            />
+            <FormLabel htmlFor="maxDistance">Max Distance:</FormLabel>
+            <Input
+              onChange={e => setMaxDistance(e.target.value)}
+              type="maxDistance"
+              id="maxDistance"
+              aria-describedby="maxDistance-helper-text"
+              placeholder="in meters"
+            />
+          </Stack>
+          <Button
+            onClick={() => handleOnSubmit()}
+            variantColor="teal"
+            variant="outline"
+          >
+            Find
+          </Button>
+        </FormControl>
+      </Flex>
     </React.Fragment>
   );
 };
