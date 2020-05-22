@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, Heading, Flex, Text, Button } from "@chakra-ui/core";
+import { Box, Heading, Flex } from "@chakra-ui/core";
 
-const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-    {children}
-  </Text>
-);
+// const MenuItems = ({ children }) => (
+//   <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+//     {children}
+//   </Text>
+// );
 
 const Header = props => {
   const [show, setShow] = React.useState(false);
@@ -23,8 +23,8 @@ const Header = props => {
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg">
-          Tolga PoC
+        <Heading as="h1" size="xl">
+          Track & Trace PoC
         </Heading>
       </Flex>
 
