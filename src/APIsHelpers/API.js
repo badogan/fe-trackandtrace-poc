@@ -64,7 +64,9 @@ const initiateSearchRequest = (url, searchObj) => {
 };
 
 const bringJobQueue = (url, jobQueueObj) => {
-  return postSimple(url, jobQueueObj);
+  console.log('url:',url)
+  console.log('jobQueueObj:',jobQueueObj)
+  return postSimple(url, jobQueueObj).then(response => response.json());
 };
 
 export default {

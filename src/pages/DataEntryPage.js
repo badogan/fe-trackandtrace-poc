@@ -6,17 +6,19 @@ import {
   Input,
   Flex,
   Stack,
-  Button,
-  Heading
+  Button
 } from "@chakra-ui/core";
 import { fetchInitiateSearch } from "../actions/fetchInitiateSearch";
+import JobQueueConfirmation from "../components/JobQueueConfirmation";
 
 const DataEntryPage = props => {
   const [uniqueId, setUniqueId] = useState("");
   const [timestamp, setTimestamp] = useState("");
   const [maxDistance, setMaxDistance] = useState("");
+  const [searchEverInitiated, setSearchEverInitiated] = useState(false);
 
   const handleOnSubmit = () => {
+    setSearchEverInitiated(true);
     props.fetchInitiateSearch({
       eMAC: "e8:93:09:1d:48:ba",
       // eMAC: uniqueId,
@@ -49,7 +51,7 @@ const DataEntryPage = props => {
               type="timestamp"
               id="timestamp"
               aria-describedby="timestamp-helper-text"
-              placeholder="ISO format"
+              placeholder="DD/MM/YYYY"
             />
             <FormLabel htmlFor="maxDistance">Max Distance:</FormLabel>
             <Input
@@ -69,6 +71,7 @@ const DataEntryPage = props => {
           </Button>
         </FormControl>
       </Flex>
+      {searchEverInitiated && <JobQueueConfirmation />}
     </React.Fragment>
   );
 };

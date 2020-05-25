@@ -4,7 +4,6 @@ import { Route } from "react-router-dom";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 
 import ChHeader from "./components/ChHeader";
-
 import DataEntryPage from "./pages/DataEntryPage";
 import JobQueueViewerPage from "./pages/JobQueueViewerPage";
 
@@ -20,7 +19,17 @@ function App(props) {
           return (
             <React.Fragment>
               <DataEntryPage {...routerProps} />
-              <JobQueueViewerPage search={props.search} />
+            </React.Fragment>
+          );
+        }}
+      />
+      <Route
+        exact
+        path="/jobqueueviewer"
+        render={routerProps => {
+          return (
+            <React.Fragment>
+              <JobQueueViewerPage {...routerProps} />
             </React.Fragment>
           );
         }}

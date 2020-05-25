@@ -1,7 +1,8 @@
 export default function manageSearch(
   state = {
     search: [],
-    requesting: false
+    requesting: false,
+    recentJobQueueRef: null
   },
   action
 ) {
@@ -17,7 +18,8 @@ export default function manageSearch(
       return {
         ...state,
         search: [...state.search, newJobQueueObj],
-        requesting: false
+        requesting: false,
+        recentJobQueueRef: action.refId
       };
 
     case "UPDATE_JOBQUEUE":
@@ -29,10 +31,10 @@ export default function manageSearch(
       const targetIndex = state.search.indexOf(targetObject);
       let objectsPart1 = state.search.slice(0, targetIndex);
       let objectsPart2 = state.search.slice(targetIndex + 1);
-      targetObject.queueData = jobQueueData;
-      console.log('PART 1: ',objectsPart1)
-      console.log('UPDATING!!!!: ',targetObject)
-      console.log('PART 2: ',objectsPart2)
+      targetObject.jobQueueData = jobQueueData;
+      // console.log('PART 1: ',objectsPart1)
+      // console.log('UPDATING!!!!: ',targetObject)
+      // console.log('PART 2: ',objectsPart2)
       objectsPart1.push(targetObject);
       const updatedSearch = objectsPart1.concat(objectsPart2);
       return {
