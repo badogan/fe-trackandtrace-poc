@@ -4,7 +4,7 @@ import {
   List,
   ListItem,
   ListIcon,
-  Spinner,
+  Skeleton,
   Box,
   Heading
 } from "@chakra-ui/core";
@@ -33,18 +33,17 @@ const JobQueueCard = props => {
   return (
     <React.Fragment>
       {processComplete ? null : (
-        <Spinner
-          thickness="5px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="blue.500"
-          size="xl"
-        />
+        <Box p={3}>
+          <Heading as="h5" size="lg">
+            Getting Unique Id List...
+          </Heading>
+          <Skeleton height="20px" my="10px" />
+        </Box>
       )}
       {processComplete ? (
-        <Box maxW="sm" borderWidth="2px" rounded="lg" overflow="hidden">
+        <Box p={3} maxW="sm" borderWidth="0px" rounded="lg" overflow="hidden">
           <Heading as="h3" size="lg">
-            List of Unique Ids:
+            List of Unique Ids
           </Heading>
           <List spacing={3}>
             {jobQueueObj.jobQueueData.data.uniqueList.map((item, index) => (

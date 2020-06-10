@@ -2,7 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-import { Spinner, Alert, AlertIcon, Flex, Button, Link } from "@chakra-ui/core";
+import {
+  Spinner,
+  Alert,
+  AlertIcon,
+  Flex,
+  Button,
+  Link,
+  Box
+} from "@chakra-ui/core";
 
 const JobQueueConfirmation = props => {
   return (
@@ -21,14 +29,16 @@ const JobQueueConfirmation = props => {
             <AlertIcon />
             JobQueue assigned. Reference Id: {props.recentJobQueueRef}
           </Alert>
-          <Button variantColor="teal" size="lg">
-            <Link
-              as={ReactRouterLink}
-              to={`/jobqueueviewer?jobqueue=${props.recentJobQueueRef}`}
-            >
-              Job Queue Details
-            </Link>
-          </Button>
+          <Box marginLeft={1}>
+            <Button variantColor="teal" size="lg">
+              <Link
+                as={ReactRouterLink}
+                to={`/jobqueueviewer?jobqueue=${props.recentJobQueueRef}`}
+              >
+                Job Queue Details
+              </Link>
+            </Button>
+          </Box>
         </Flex>
       )}
     </React.Fragment>

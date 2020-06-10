@@ -6,7 +6,8 @@ import {
   Input,
   Flex,
   Stack,
-  Button
+  Button,
+  Box
 } from "@chakra-ui/core";
 import { fetchInitiateSearch } from "../actions/fetchInitiateSearch";
 import JobQueueConfirmation from "../components/JobQueueConfirmation";
@@ -35,43 +36,49 @@ const DataEntryPage = props => {
   return (
     <React.Fragment>
       <Flex align="center">
-        <FormControl>
-          <FormLabel htmlFor="uniqueId">Unique Id:</FormLabel>
-          <Stack spacing={0.5}>
-            <Input
-              onChange={e => setUniqueId(e.target.value)}
-              type="uniqueId"
-              id="uniqueId"
-              aria-describedby="uniqueId-helper-text"
-              placeholder="MAC, id, _id"
-            />
-            <FormLabel htmlFor="timestamp">Timestamp:</FormLabel>
-            <Input
-              onChange={e => setTimestamp(e.target.value)}
-              type="timestamp"
-              id="timestamp"
-              aria-describedby="timestamp-helper-text"
-              placeholder="DD/MM/YYYY"
-            />
-            <FormLabel htmlFor="maxDistance">Max Distance:</FormLabel>
-            <Input
-              onChange={e => setMaxDistance(e.target.value)}
-              type="maxDistance"
-              id="maxDistance"
-              aria-describedby="maxDistance-helper-text"
-              placeholder="in meters"
-            />
-          </Stack>
-          <Button
-            onClick={() => handleOnSubmit()}
-            variantColor="teal"
-            variant="outline"
-          >
-            Find
-          </Button>
-        </FormControl>
+        <Box marginLeft={2} p={5}>
+          <FormControl>
+            <FormLabel htmlFor="uniqueId">Unique Id:</FormLabel>
+            <Stack spacing={0.5}>
+              <Input
+                onChange={e => setUniqueId(e.target.value)}
+                type="uniqueId"
+                id="uniqueId"
+                aria-describedby="uniqueId-helper-text"
+                placeholder="MAC, id, _id"
+              />
+              <FormLabel htmlFor="timestamp">Timestamp:</FormLabel>
+              <Input
+                onChange={e => setTimestamp(e.target.value)}
+                type="timestamp"
+                id="timestamp"
+                aria-describedby="timestamp-helper-text"
+                placeholder="DD/MM/YYYY"
+              />
+              <FormLabel htmlFor="maxDistance">Max Distance:</FormLabel>
+              <Input
+                onChange={e => setMaxDistance(e.target.value)}
+                type="maxDistance"
+                id="maxDistance"
+                aria-describedby="maxDistance-helper-text"
+                placeholder="in meters"
+              />
+            </Stack>
+            <Box marginTop={3}>
+              <Button
+                onClick={() => handleOnSubmit()}
+                variantColor="teal"
+                variant="outline"
+              >
+                Initiate Search
+              </Button>
+            </Box>
+          </FormControl>
+        </Box>
       </Flex>
-      {searchEverInitiated && <JobQueueConfirmation />}
+      <Box marginLeft={2} p={5}>
+        {searchEverInitiated && <JobQueueConfirmation />}
+      </Box>
     </React.Fragment>
   );
 };
