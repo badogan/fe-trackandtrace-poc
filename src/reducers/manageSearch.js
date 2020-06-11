@@ -1,10 +1,11 @@
+const initialState = {
+  user: null,
+  search: [],
+  requesting: false,
+  recentJobQueueRef: null
+}
 export default function manageSearch(
-  state = {
-    user: null,
-    search: [],
-    requesting: false,
-    recentJobQueueRef: null
-  },
+  state = initialState,
   action
 ) {
   switch (action.type) {
@@ -49,6 +50,8 @@ export default function manageSearch(
           ...state,
           user: action.userObj
         }
+      case "RESET_STATE":
+        return {...initialState}
 
     default:
       return state;

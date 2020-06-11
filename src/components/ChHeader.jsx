@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Heading, Flex, Link } from "@chakra-ui/core";
+import { connect } from "react-redux";
+import { Box, Heading, Flex, Link, Button } from "@chakra-ui/core";
 import { Link as ReactRouterLink } from "react-router-dom";
 
 // const MenuItems = ({ children }) => (
@@ -11,6 +12,12 @@ import { Link as ReactRouterLink } from "react-router-dom";
 const Header = props => {
   const [show, setShow] = React.useState(false);
   const handleToggle = () => setShow(!show);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    props.logoutActions();
+    props.history.push("/");
+  };
 
   return (
     <Flex
@@ -47,24 +54,35 @@ const Header = props => {
         alignItems="center"
         flexGrow={1}
       >
-        <Link as={ReactRouterLink} to={`/dataentry`}>
-          Search
-        </Link>
+        {props.user && (
+          <Link as={ReactRouterLink} to={`/dataentry`}>
+            Search
+          </Link>
+        )}
         {/* <MenuItems>Search</MenuItems> */}
         {/* <MenuItems>Examples</MenuItems> */}
         {/* <MenuItems>Blog</MenuItems> */}
       </Box>
 
-      {/* <Box
+      <Box
         display={{ sm: show ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Button bg="transparent" border="1px">
-          Create account
-        </Button>
-      </Box> */}
+        {props.user && (
+          <Button onClick={() => handleLogout()} bg="transparent" border="1px">
+            Logout
+          </Button>
+        )}
+      </Box>
     </Flex>
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({ user: state.user });
+
+function mapDispatchToProps(dispatch) {
+  return {
+    logoutActions: () => dispatch({ type: "RESET_STATE" })
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

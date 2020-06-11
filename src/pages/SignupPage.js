@@ -31,6 +31,10 @@ const SignupPage = props => {
   };
 
   useEffect(() => {
+    props.user && props.history.push("/dataentry");
+  },[props.user,props.history]);
+
+  useEffect(() => {
     errorArray && errorArray.length === 0 && doSignup();
   }, [errorArray]);
 

@@ -6,14 +6,18 @@ import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 import ChHeader from "./components/ChHeader";
 import DataEntryPage from "./pages/DataEntryPage";
 import JobQueueViewerPage from "./pages/JobQueueViewerPage";
-import LandingPage from './pages/LandingPage'
-import SignupPage from './pages/SignupPage'
+import LandingPage from "./pages/LandingPage";
+import SignupPage from "./pages/SignupPage";
 
 function App(props) {
   return (
     <ThemeProvider>
       <CSSReset />
-      <ChHeader />
+      <Route
+        render={routerProps => {
+          return <ChHeader {...routerProps} />;
+        }}
+      />
       <Route
         exact
         path="/"
