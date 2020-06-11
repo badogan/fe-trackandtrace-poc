@@ -1,12 +1,12 @@
 import React from "react";
-import { Box, Heading, Flex, Text, Link } from "@chakra-ui/core";
+import { Box, Heading, Flex, Link } from "@chakra-ui/core";
 import { Link as ReactRouterLink } from "react-router-dom";
 
-const MenuItems = ({ children }) => (
-  <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
-    {children}
-  </Text>
-);
+// const MenuItems = ({ children }) => (
+//   <Text mt={{ base: 4, md: 0 }} mr={6} display="block">
+//     {children}
+//   </Text>
+// );
 
 const Header = props => {
   const [show, setShow] = React.useState(false);

@@ -1,3 +1,5 @@
+const URL_userSignup = `${process.env.REACT_APP_BE_API_URL}/api/v1/users/signup`
+
 const postSimple = (url, obj) => {
   return fetch(url, {
     method: "POST",
@@ -69,7 +71,14 @@ const bringJobQueue = (url, jobQueueObj) => {
   return postSimple(url, jobQueueObj).then(response => response.json());
 };
 
+const UserSignup = userSignupObject => {  
+  return postSimple(URL_userSignup, userSignupObject).then(response =>
+    response.json()
+  );
+};
+
 export default {
   initiateSearchRequest,
-  bringJobQueue
+  bringJobQueue,
+  UserSignup
 };

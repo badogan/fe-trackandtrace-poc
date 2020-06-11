@@ -1,5 +1,6 @@
 export default function manageSearch(
   state = {
+    user: null,
     search: [],
     requesting: false,
     recentJobQueueRef: null
@@ -41,6 +42,13 @@ export default function manageSearch(
         ...state,
         search: updatedSearch
       };
+
+      case "UPDATE_USER":
+        console.log('ACTION:USER_UPDATE: ',action)
+        return{
+          ...state,
+          user: action.userObj
+        }
 
     default:
       return state;
