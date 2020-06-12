@@ -8,6 +8,7 @@ import DataEntryPage from "./pages/DataEntryPage";
 import JobQueueViewerPage from "./pages/JobQueueViewerPage";
 import LandingPage from "./pages/LandingPage";
 import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
 
 function App(props) {
   return (
@@ -36,6 +37,17 @@ function App(props) {
           return (
             <React.Fragment>
               <SignupPage {...routerProps} />
+            </React.Fragment>
+          );
+        }}
+      />
+      <Route
+        exact
+        path="/login"
+        render={routerProps => {
+          return (
+            <React.Fragment>
+              <LoginPage {...routerProps} />
             </React.Fragment>
           );
         }}

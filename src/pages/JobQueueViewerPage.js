@@ -13,25 +13,27 @@ const JobQueueViewerPage = props => {
     setJobQueueId(queryString.parse(props.location.search).jobqueue);
   }, [props.location.search]);
   useEffect(() => {
-    jobQueueId && fetchBringJobQueue(jobQueueId);
+    jobQueueId && fetchBringJobQueue(props.user._id,jobQueueId);
   }, [jobQueueId, fetchBringJobQueue]);
 
   return (
     <React.Fragment>
-      {jobQueueId &&
-      <JobQueueCard
-        jobQueueId={jobQueueId}
-        jobQueueObj={props.search.find(obj => obj.refId === jobQueueId)}
-      />}
+      {jobQueueId && (
+        <JobQueueCard
+          jobQueueId={jobQueueId}
+          jobQueueObj={props.search.find(obj => obj.refId === jobQueueId)}
+        />
+      )}
     </React.Fragment>
   );
 };
 
-const mapStateToProps = state => ({ search: state.search });
+const mapStateToProps = state => ({ search: state.search, user: state.user });
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBringJobQueue: jobQueueId => dispatch(fetchBringJobQueue(jobQueueId))
+    fetchBringJobQueue: (_id, jobQueueId) =>
+      dispatch(fetchBringJobQueue(_id, jobQueueId))
   };
 }
 

@@ -1,5 +1,6 @@
 const URL_userSignup = `${process.env.REACT_APP_BE_API_URL}/api/v1/users/signup`
-
+const URL_userLogin = `${process.env.REACT_APP_BE_API_URL}/api/v1/users/login`
+const URL_PART1=`${process.env.REACT_APP_BE_API_URL}/api/v1/users/`
 const postSimple = (url, obj) => {
   return fetch(url, {
     method: "POST",
@@ -11,17 +12,17 @@ const postSimple = (url, obj) => {
   });
 };
 
-// const postWithAuth = (url, obj) => {
-//   return fetch(url, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//       Authorization: `Bearer ${localStorage.token}`
-//     },
-//     body: JSON.stringify(obj)
-//   });
-// };
+const postWithAuth = (url, obj) => {
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${localStorage.token}`
+    },
+    body: JSON.stringify(obj)
+  });
+};
 
 // const getSimple = url => {
 //   return fetch(url);
@@ -61,14 +62,14 @@ const postSimple = (url, obj) => {
 //   });
 // };
 
-const initiateSearchRequest = (url, searchObj) => {
-  return postSimple(url, searchObj);
+const initiateSearchRequest = (_id,searchObj) => {
+  const urlToHit = URL_PART1 + `${_id}/q1results/`
+  return postWithAuth(urlToHit, searchObj);
 };
 
-const bringJobQueue = (url, jobQueueObj) => {
-  console.log('url:',url)
-  console.log('jobQueueObj:',jobQueueObj)
-  return postSimple(url, jobQueueObj).then(response => response.json());
+const bringJobQueue = (_id, jobQueueObj) => {
+  const urlToHit = URL_PART1 + `${_id}/jobqueue/`
+  return postWithAuth(urlToHit, jobQueueObj).then(response => response.json());
 };
 
 const UserSignup = userSignupObject => {  
@@ -77,8 +78,15 @@ const UserSignup = userSignupObject => {
   );
 };
 
+const UserLogin = userLoginObject => {
+  return postSimple(URL_userLogin, userLoginObject).then(response =>
+    response.json()
+  );
+};
+
 export default {
   initiateSearchRequest,
   bringJobQueue,
-  UserSignup
+  UserSignup,
+  UserLogin
 };

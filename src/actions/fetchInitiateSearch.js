@@ -1,10 +1,9 @@
 import API from "../APIsHelpers/API";
 
-export function fetchInitiateSearch(searchObj) {
+export function fetchInitiateSearch(_id,searchObj) {
   return dispatch => {
     dispatch({ type: "START_INITIATE_SEARCH_REQUEST" });
-    const url = "http://localhost:5001/api/v1/existence/q1results/";
-    API.initiateSearchRequest(url, searchObj)
+    API.initiateSearchRequest(_id,searchObj)
       .then(response => response.json())
       .then(res => {
         console.log(res);

@@ -12,14 +12,14 @@ const LandingPage = props => {
         flexDirection="column"
       >
         <Heading as="h1" size="xl">
-          Covid 19 - Track and Trace
+          Track and Trace
         </Heading>
         <Heading marginTop={4} as="h2" size="lg">
           System Entry
         </Heading>
         <Box marginTop={5}>
           <Button variantColor="teal" size="md">
-            <Link as={ReactRouterLink} to={`/dataentry`}>
+            <Link as={ReactRouterLink} to={`/login`}>
               Login
             </Link>
           </Button>

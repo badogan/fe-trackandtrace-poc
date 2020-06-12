@@ -69,9 +69,19 @@ const Header = props => {
         mt={{ base: 4, md: 0 }}
       >
         {props.user && (
-          <Button onClick={() => handleLogout()} bg="transparent" border="1px">
-            Logout
-          </Button>
+          <Flex align="center" justifyContent="flex-start" flexDirection="row">
+            <Heading as="h1" size="md">
+              Welcome {props.user.name}!
+            </Heading>
+            <Button
+              onClick={() => handleLogout()}
+              bg="transparent"
+              border="1px"
+              marginLeft={2}
+            >
+              Logout
+            </Button>
+          </Flex>
         )}
       </Box>
     </Flex>

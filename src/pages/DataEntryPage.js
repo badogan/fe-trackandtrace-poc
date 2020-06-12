@@ -20,7 +20,7 @@ const DataEntryPage = props => {
 
   const handleOnSubmit = () => {
     setSearchEverInitiated(true);
-    props.fetchInitiateSearch({
+    props.fetchInitiateSearch(props.user._id,{
       eMAC: "e8:93:09:1d:48:ba",
       // eMAC: uniqueId,
       eTimestamp: "2020-05-18T09:25:39.804Z",
@@ -83,11 +83,12 @@ const DataEntryPage = props => {
   );
 };
 
-const mapStateToProps = state => ({ search: state.search });
+const mapStateToProps = state => ({ search: state.search, user: state.user });
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchInitiateSearch: searchObj => dispatch(fetchInitiateSearch(searchObj))
+    fetchInitiateSearch: (_id, searchObj) =>
+      dispatch(fetchInitiateSearch(_id, searchObj))
   };
 }
 

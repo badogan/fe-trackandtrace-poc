@@ -22,7 +22,7 @@ const JobQueueCard = props => {
   }, [continuePolling]);
 
   async function pollJobQueue() {
-    fetchBringJobQueue(jobQueueId);
+    fetchBringJobQueue(props.user._id,jobQueueId);
     await delay(3000);
     if (jobQueueObj.jobQueueData.data.uniqueList === undefined) {
       setContinuePolling(continuePolling + 1);
@@ -61,12 +61,13 @@ const JobQueueCard = props => {
   );
 };
 
-// const mapStateToProps = state => ({ search: state.search });
+const mapStateToProps = state => ({ user: state.user });
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBringJobQueue: jobQueueId => dispatch(fetchBringJobQueue(jobQueueId))
+    fetchBringJobQueue: (_id, jobQueueId) =>
+      dispatch(fetchBringJobQueue(_id, jobQueueId))
   };
 }
 
-export default connect(null, mapDispatchToProps)(JobQueueCard);
+export default connect(mapStateToProps, mapDispatchToProps)(JobQueueCard);
