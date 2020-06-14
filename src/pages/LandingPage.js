@@ -1,6 +1,7 @@
 import React from "react";
 import { Heading, Flex, Box, Button, Link } from "@chakra-ui/core";
 import { Link as ReactRouterLink } from "react-router-dom";
+import API from "../APIsHelpers/API";
 
 const LandingPage = props => {
   return (
@@ -23,7 +24,18 @@ const LandingPage = props => {
               Login
             </Link>
           </Button>
-          <Button marginLeft={4} variantColor="teal" size="md">
+          <Button marginLeft={3}
+            onClick={() => {
+              console.log("Hitting Google Login route");
+              API.LoginGoogle();
+            }}
+            variantColor="teal"
+            size="md"
+          >
+            Login Google+
+          </Button>
+          {/* <a class="google-btn" href="/auth/google">Google+</a> */}
+          <Button marginLeft={3} variantColor="teal" size="md">
             <Link as={ReactRouterLink} to={`/signup`}>
               Signup
             </Link>

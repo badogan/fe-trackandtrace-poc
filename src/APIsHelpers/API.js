@@ -1,6 +1,8 @@
 const URL_userSignup = `${process.env.REACT_APP_BE_API_URL}/api/v1/users/signup`
 const URL_userLogin = `${process.env.REACT_APP_BE_API_URL}/api/v1/users/login`
 const URL_PART1=`${process.env.REACT_APP_BE_API_URL}/api/v1/users/`
+const URL_LoginGoogle=`${process.env.REACT_APP_BE_API_URL}/api/v1/users/loginGoogle`
+
 const postSimple = (url, obj) => {
   return fetch(url, {
     method: "POST",
@@ -24,9 +26,9 @@ const postWithAuth = (url, obj) => {
   });
 };
 
-// const getSimple = url => {
-//   return fetch(url);
-// };
+const getSimple = url => {
+  return fetch(url);
+};
 
 // const getWithAuth = url => {
 //   return fetch(url, {
@@ -84,9 +86,14 @@ const UserLogin = userLoginObject => {
   );
 };
 
+const LoginGoogle = () => {
+  getSimple(URL_LoginGoogle)
+}
+
 export default {
   initiateSearchRequest,
   bringJobQueue,
   UserSignup,
-  UserLogin
+  UserLogin,
+  LoginGoogle
 };
