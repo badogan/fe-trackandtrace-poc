@@ -24,17 +24,14 @@ const LandingPage = props => {
               Login
             </Link>
           </Button>
-          <Button marginLeft={3}
-            onClick={() => {
-              console.log("Hitting Google Login route");
-              API.LoginGoogle();
-            }}
-            variantColor="teal"
-            size="md"
-          >
-            Login Google+
+
+          <Button marginLeft={3} variantColor="teal" size="md">
+            {/* <Link href="http://localhost:4000/api/v1/users/loginGoogle"> */}
+            <Link href={API.LoginGoogleURL()}>
+              Login Google +
+            </Link>
           </Button>
-          {/* <a class="google-btn" href="/auth/google">Google+</a> */}
+
           <Button marginLeft={3} variantColor="teal" size="md">
             <Link as={ReactRouterLink} to={`/signup`}>
               Signup

@@ -9,6 +9,7 @@ import JobQueueViewerPage from "./pages/JobQueueViewerPage";
 import LandingPage from "./pages/LandingPage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import LoggedInGooglePage from "./pages/LoggedInGooglePage";
 
 function App(props) {
   return (
@@ -48,6 +49,17 @@ function App(props) {
           return (
             <React.Fragment>
               <LoginPage {...routerProps} />
+            </React.Fragment>
+          );
+        }}
+      />
+      <Route
+        exact
+        path="/loggedingooglepage"
+        render={routerProps => {
+          return (
+            <React.Fragment>
+              <LoggedInGooglePage {...routerProps} />
             </React.Fragment>
           );
         }}
