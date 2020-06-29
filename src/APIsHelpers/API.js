@@ -31,16 +31,44 @@ const getSimple = url => {
   return fetch(url);
 };
 
-const getSimple2 = url => {
-  fetch(url, {
-    method: "GET",
-    headers: {
-      "Access-Control-Allow-Origin": "*"
-      // "Access-Control-Allow-Headers": "*",
-      // "Access-Control-Allow-Methods": "HEAD, GET, POST, PUT, PATCH, DELETE"
-    }
-  });
+
+const initiateSearchRequest = (_id, searchObj) => {
+  const urlToHit = URL_PART1 + `${_id}/q1results/`;
+  return postWithAuth(urlToHit, searchObj);
 };
+
+const bringJobQueue = (_id, jobQueueObj) => {
+  const urlToHit = URL_PART1 + `${_id}/jobqueue/`;
+  return postWithAuth(urlToHit, jobQueueObj).then(response => response.json());
+};
+
+const UserSignup = userSignupObject => {
+  return postSimple(URL_userSignup, userSignupObject).then(response =>
+    response.json()
+  );
+};
+
+const UserLogin = userLoginObject => {
+  return postSimple(URL_userLogin, userLoginObject).then(response =>
+    response.json()
+  );
+};
+
+const LoginGoogleURL = () => {
+  return URL_LoginGoogle;
+};
+
+export default {
+  initiateSearchRequest,
+  bringJobQueue,
+  UserSignup,
+  UserLogin,
+  LoginGoogleURL
+};
+
+
+
+//APPENDIX-START===============
 // const getWithAuth = url => {
 //   return fetch(url, {
 //     method: "GET",
@@ -74,43 +102,4 @@ const getSimple2 = url => {
 //     body: JSON.stringify(obj)
 //   });
 // };
-
-const initiateSearchRequest = (_id, searchObj) => {
-  const urlToHit = URL_PART1 + `${_id}/q1results/`;
-  return postWithAuth(urlToHit, searchObj);
-};
-
-const bringJobQueue = (_id, jobQueueObj) => {
-  const urlToHit = URL_PART1 + `${_id}/jobqueue/`;
-  return postWithAuth(urlToHit, jobQueueObj).then(response => response.json());
-};
-
-const UserSignup = userSignupObject => {
-  return postSimple(URL_userSignup, userSignupObject).then(response =>
-    response.json()
-  );
-};
-
-const UserLogin = userLoginObject => {
-  return postSimple(URL_userLogin, userLoginObject).then(response =>
-    response.json()
-  );
-};
-
-const LoginGoogleURL = () => {
-  return URL_LoginGoogle;
-};
-
-const LoginGoogleStepTwo = (url) => {
-  console.log("inside LoginGoogleStepTwo");
-  return getSimple(url);
-};
-
-export default {
-  initiateSearchRequest,
-  bringJobQueue,
-  UserSignup,
-  UserLogin,
-  LoginGoogleURL,
-  LoginGoogleStepTwo
-};
+//APPENDIX-END=====================================

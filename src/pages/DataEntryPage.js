@@ -20,7 +20,7 @@ const DataEntryPage = props => {
 
   const handleOnSubmit = () => {
     setSearchEverInitiated(true);
-    props.fetchInitiateSearch(props.user._id,{
+    props.fetchInitiateSearch(props.user._id, {
       eMAC: "e8:93:09:1d:48:ba",
       // eMAC: uniqueId,
       eTimestamp: "2020-05-18T09:25:39.804Z",
@@ -36,10 +36,12 @@ const DataEntryPage = props => {
   return (
     <React.Fragment>
       <Flex align="center">
+        <Box></Box>
         <Box marginLeft={2} p={5}>
           <FormControl>
             <FormLabel htmlFor="uniqueId">Unique Id:</FormLabel>
             <Stack spacing={0.5}>
+              {/* <DatePicker onChange={onChange1} value={value1} /> */}
               <Input
                 onChange={e => setUniqueId(e.target.value)}
                 type="uniqueId"
