@@ -3,11 +3,8 @@ const initialState = {
   search: [],
   requesting: false,
   recentJobQueueRef: null
-}
-export default function manageSearch(
-  state = initialState,
-  action
-) {
+};
+export default function manageSearch(state = initialState, action) {
   switch (action.type) {
     case "START_INITIATE_SEARCH_REQUEST":
       return {
@@ -34,9 +31,6 @@ export default function manageSearch(
       let objectsPart1 = state.search.slice(0, targetIndex);
       let objectsPart2 = state.search.slice(targetIndex + 1);
       targetObject.jobQueueData = jobQueueData;
-      // console.log('PART 1: ',objectsPart1)
-      // console.log('UPDATING!!!!: ',targetObject)
-      // console.log('PART 2: ',objectsPart2)
       objectsPart1.push(targetObject);
       const updatedSearch = objectsPart1.concat(objectsPart2);
       return {
@@ -44,14 +38,14 @@ export default function manageSearch(
         search: updatedSearch
       };
 
-      case "UPDATE_USER":
-        console.log('ACTION:USER_UPDATE: ',action)
-        return{
-          ...state,
-          user: action.userObj
-        }
-      case "RESET_STATE":
-        return {...initialState}
+    case "UPDATE_USER":
+      console.log("ACTION:USER_UPDATE: ", action);
+      return {
+        ...state,
+        user: action.userObj
+      };
+    case "RESET_STATE":
+      return { ...initialState };
 
     default:
       return state;
