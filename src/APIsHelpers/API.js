@@ -60,10 +60,11 @@ const LoginGoogleURL = () => {
   return URL_LoginGoogle;
 };
 
-const checkIfEmailIsAvailable = async email =>
-  postSimple(URL_isEmailAvailable, { email })
+const checkIfEmailIsAvailable = email => {
+  return postSimple(URL_isEmailAvailable, { email })
     .then(res => res.json())
     .then(result => result.data.emailAvailable);
+};
 
 export default {
   checkIfEmailIsAvailable,

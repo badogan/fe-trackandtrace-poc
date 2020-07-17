@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import API from "../APIsHelpers/API";
 
 const useValidation = () => {
   const [usernameToValidate, setUsernameToValidate] = useState(null);
@@ -20,19 +21,31 @@ const useValidation = () => {
     emailToValidate
   ]);
 
-  useEffect(() => {
-    setErrorArray(null)
-  }, []);
+  // useEffect(() => {
+  //   setErrorArray(null);
+  // }, []);
 
   const pushValidationResultsToErrorArray = () => {
-    setErrorArray(errorArray => [...errorArray].concat(validationTestResults));
+    let futureArr = [].concat(validationTestResults);
+    setErrorArray(futureArr);
   };
 
-  const waitForAPromiseToResolve = () =>
-    new Promise(resolve => setTimeout(() => resolve("RESOLVED!")), 5000);
+  const checkEmailAndTriggerComm = async () => {
+    if (!validationTestResults.includes("Email address not valid")) {
+      const result = await API.checkIfEmailIsAvailable(emailToValidate).then(
+        res => res
+      );
+      if (!result) {
+        validationTestResults.push("Email already registered.");
+      }
+      pushValidationResultsToErrorArray();
+    } else {
+      pushValidationResultsToErrorArray();
+    }
+  };
 
   const runValidationRules = async () => {
-    setErrorArray([]);
+    // setErrorArray([]);
     setValidationTestResults([]);
     if (validationTestResults && !passwordToValidate) {
       validationTestResults.push("Password does not exist");
@@ -43,11 +56,16 @@ const useValidation = () => {
     if (validationTestResults && !usernameToValidate) {
       validationTestResults.push("Name does not exist!");
     }
-    if (validationTestResults && passwordToValidate && passwordToValidate.length < 5) {
+    if (
+      validationTestResults &&
+      passwordToValidate &&
+      passwordToValidate.length < 5
+    ) {
       validationTestResults.push("Password length less than 5 characters");
     }
     if (
-      validationTestResults && passwordToValidate &&
+      validationTestResults &&
+      passwordToValidate &&
       passwordConfirmationToValidate &&
       passwordToValidate !== passwordConfirmationToValidate
     ) {
@@ -58,15 +76,13 @@ const useValidation = () => {
 
     let re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/gim;
     if (
-      validationTestResults && emailToValidate &&
+      validationTestResults &&
+      emailToValidate &&
       (emailToValidate === "" || !re.test(emailToValidate))
     ) {
       validationTestResults.push("Email address not valid");
     }
-
-    // await waitForAPromiseToResolve();
-
-    pushValidationResultsToErrorArray();
+    emailToValidate && (await checkEmailAndTriggerComm());
   };
 
   const validate = (name, email, password, passwordConfirmation) => {
