@@ -45,7 +45,6 @@ const useValidation = () => {
   };
 
   const runValidationRules = async () => {
-    // setErrorArray([]);
     setValidationTestResults([]);
     if (validationTestResults && !passwordToValidate) {
       validationTestResults.push("Password does not exist");
