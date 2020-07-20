@@ -21,10 +21,6 @@ const useValidation = () => {
     emailToValidate
   ]);
 
-  // useEffect(() => {
-  //   setErrorArray(null);
-  // }, []);
-
   const pushValidationResultsToErrorArray = () => {
     let futureArr = [].concat(validationTestResults);
     setErrorArray(futureArr);
@@ -35,9 +31,7 @@ const useValidation = () => {
       const result = await API.checkIfEmailIsAvailable(emailToValidate).then(
         res => res
       );
-      if (!result) {
-        validationTestResults.push("Email already registered.");
-      }
+      if (!result) validationTestResults.push("Email already registered.");
       pushValidationResultsToErrorArray();
     } else {
       pushValidationResultsToErrorArray();
