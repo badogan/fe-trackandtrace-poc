@@ -25,11 +25,8 @@ const LandingPage = props => {
             </Link>
           </Button>
 
-          <Button marginLeft={3} variantColor="teal" size="md">
-            {/* <Link href="http://localhost:4000/api/v1/users/loginGoogle"> */}
-            <Link href={API.LoginGoogleURL()}>
-              Login Google +
-            </Link>
+          <Button marginLeft={3} color="#d13317" size="md">
+            <Link href={API.LoginGoogleURL()}>Login Google +</Link>
           </Button>
 
           <Button marginLeft={3} variantColor="teal" size="md">
