@@ -21,12 +21,9 @@ const DataEntryPage = props => {
   const handleOnSubmit = () => {
     setSearchEverInitiated(true);
     props.fetchInitiateSearch(props.user._id, {
-      eMAC: "e8:93:09:1d:48:ba",
-      // eMAC: uniqueId,
-      eTimestamp: "2020-05-18T09:25:39.804Z",
-      // eTimestamp: timestamp,
-      maxDistance: 2
-      // maxDistance
+      eMAC: uniqueId || "e8:93:09:1d:48:ba",
+      eTimestamp: timestamp || "2020-05-18T09:25:39.804Z",
+      maxDistance: maxDistance || 2
     });
     setUniqueId("");
     setTimestamp("");
@@ -59,7 +56,7 @@ const DataEntryPage = props => {
               />
               <FormLabel htmlFor="maxDistance">Max Distance:</FormLabel>
               <Input
-                onChange={e => setMaxDistance(e.target.value)}
+                onChange={e => setMaxDistance(parseInt(e.target.value))}
                 type="maxDistance"
                 id="maxDistance"
                 aria-describedby="maxDistance-helper-text"
